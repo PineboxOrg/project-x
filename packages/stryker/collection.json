@@ -1,0 +1,17 @@
+{
+    "name": "Angular Stryker Plugin",
+    "version": "0.1",
+    "schematics": {
+      "ng-add": {
+        "factory": "./src/schematics/ng-add/ng-add",
+        "schema": "./src/schematics/ng-add/schema.json",
+        "description": "Initialize the Angular Stryker plugin",
+        "hidden": true
+      },
+      "stryker-project": {
+        "factory": "./src/schematics/stryker-project/stryker-project",
+        "schema": "./src/schematics/stryker-project/schema.json",
+        "description": "Add Stryker configuration to a project"
+      }
+}
+}

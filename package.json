@@ -1,0 +1,27 @@
+{
+    "name": "@angular-plugins/source",
+    "version": "0.0.0",
+    "description": "Angular Plugins to ",
+    "homepage": "https://www.sample.com",
+    "main": "index.js",
+    "private": true,
+    "scripts": {
+        "build": "./scripts/build.sh",
+        "genPublish": "./scripts/publish.sh"
+    },
+    "author": "Sebastian Guevara",
+    "license": "MIT",
+    "devDependencies": {
+        "@angular-devkit/architect": "^0.803.2",
+        "@angular-devkit/core": "^8.3.2",
+        "@types/node": "^12.7.3",
+        "typescript": "^3.6.2",
+        "@nrwl/workspace": "^8.6.0",
+    "@stryker-mutator/api": "^2.1.0",
+    "@stryker-mutator/core": "^2.1.0",
+    "@stryker-mutator/html-reporter": "^2.1.0",
+    "@stryker-mutator/jest-runner": "^2.1.0",
+    "@stryker-mutator/karma-runner": "^2.1.0",
+    "@stryker-mutator/typescript": "^2.1.0"
+    }
+}

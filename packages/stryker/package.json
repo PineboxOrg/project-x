@@ -1,0 +1,38 @@
+{
+  "name": "@angular-plugins/stryker",
+  "version": "0.0.1",
+  "private": false,
+  "description": "Stryker Plugin for Angular and Nx Repos",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SebasG22/angular-plugins"
+  },
+  "keywords": [
+    "Angular",
+    "React",
+    "Web",
+    "Jest",
+    "Karma",
+    "Stryker",
+    "Mutation Testing",
+    "Nx"
+  ],
+  "main": "index.js",
+  "types": "index.d.ts",
+  "author": "Sebastian Guevara",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SebasG22/angular-plugins/issues"
+  },
+  "homepage": "https://sample.com",
+  "schematics": "./collection.json",
+  "builders": "./builders.json",
+  "peerDependencies": {
+    "@nrwl/workspace": "*"
+  },
+  "dependencies": {
+    "@angular-devkit/architect": "0.803.3",
+    "@angular-devkit/core": "8.3.3",
+    "@angular-devkit/schematics": "8.3.3"
+  }
+}
