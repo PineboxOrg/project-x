@@ -6,11 +6,14 @@ import {
   url,
   template,
   move,
-  Tree
+  Tree,
+  TypedSchematicContext
 } from '@angular-devkit/schematics';
-import { getProjectConfig, getWorkspace, readJsonInTree } from '@nrwl/workspace';
+import { getProjectConfig, getWorkspace, readJsonInTree, updateWorkspaceInTree } from '@nrwl/workspace';
 import { mergeWith } from '@angular-devkit/schematics';
 import { Schema } from './schema';
+import { join, normalize } from '@angular-devkit/core';
+import init from '../init/init';
 
 function isNrwlWorkspace(host: Tree): boolean {
   const workspaceJson = readJsonInTree(host, 'angular.json');
@@ -22,14 +25,13 @@ function concatPath(value: string, path: string, startPath: string = './') {
   return finalPath;
 }
 
-function generateFiles(options: Schema): Rule {
+function generateFile(options: Schema): Rule {
   return (host, context) => {
     const workspaceJson = readJsonInTree(host, 'angular.json');
     const projectConfig = getProjectConfig(host, options.project);
-    const root = projectConfig.root ? '' : `${projectConfig.root}/`;
+    const root = projectConfig.root.length === 0 ? '' : `${projectConfig.root}/`;
     let libsFolder = (workspaceJson.newProjectRoot && workspaceJson.newProjectRoot.length) ? workspaceJson.newProjectRoot:'libs';
 
-   
     return mergeWith(
       apply(url('./files'), [
         template({
@@ -55,12 +57,41 @@ function generateFiles(options: Schema): Rule {
           ]
         }),
 
-        move(projectConfig.root)
+        move(projectConfig.root),
       ])
     )(host, context);
   };
 }
 
+function updateWorkspaceJson(options: Schema): Rule {
+  return updateWorkspaceInTree(json => {
+    const projectConfig = json.projects[options.project];
+    projectConfig.architect.mutate = {
+      builder: '@angular-plugins/stryker:mutate',
+      options: {
+        configFile: join(normalize(projectConfig.root), 'stryker.config.js'),
+      }
+    };
+    return json;
+  });
+}
+
+function check(options: Schema): Rule {
+  return (host: Tree, context: TypedSchematicContext<{},{}>) => {
+    const projectConfig = getProjectConfig(host, options.project);
+    if (projectConfig.architect.mutate) {
+      throw new Error(
+        `${options.project} already has a mutate architect option.`
+      );
+    }
+    return host;
+  };
+}
+
 export default function (options: Schema): Rule {
-  return chain([generateFiles(options)]);
+  return chain([
+    init(),
+    check(options),
+    generateFile(options), 
+    updateWorkspaceJson(options)]);
 }

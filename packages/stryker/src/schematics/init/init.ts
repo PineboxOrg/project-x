@@ -65,7 +65,6 @@ import {
   function removeDependency() {
     return updateJsonInTree('package.json', json => {
       json.dependencies = json.dependencies || {};
-      delete json.dependencies['@sebasg/stryker'];
       delete json.dependencies['@stryker-mutator/api'];
       delete json.dependencies['@stryker-mutator/core'];
       delete json.dependencies['@stryker-mutator/jest-runner'];
@@ -75,6 +74,6 @@ import {
     });
   }
   
-  export default function(schema: any) {
+  export default function() {
     return chain([removeDependency(), checkDependenciesInstalled()]);
   }
