@@ -37,7 +37,12 @@
           "type": "string"
         },
         "description": "Set the reporters for stryker to use",
-        "default": ["html"]
+        "default": ["html","clear-text", "progress"]
+      },
+      "timeoutMS": {
+        "type": "number",
+        "description": "Set the timeoutMS for stryker to use",
+        "default": [500000]
       }
     },
     "required": ["project"]

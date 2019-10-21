@@ -7,21 +7,40 @@
     "private": true,
     "scripts": {
         "build": "./scripts/build.sh",
-        "genPublish": "./scripts/publish.sh"
+        "linknpm": "./scripts/link.sh",
+        "e2e": "./scripts/e2e.sh",
+        "test": "yarn linknpm fast && ./scripts/test.sh",
+        "release": "./scripts/publish.sh"
     },
     "author": "Sebastian Guevara",
     "license": "MIT",
     "devDependencies": {
         "@angular-devkit/architect": "^0.803.2",
         "@angular-devkit/core": "^8.3.2",
-        "@types/node": "^12.7.3",
-        "typescript": "^3.6.2",
+        "@angular-devkit/schematics": "8.3.3",
+        "@angular-eslint/builder": "0.0.1-alpha.17",
+        "@angular/cli": "8.3.3",
+        "@angular/common": "^8.2.0",
+        "@angular/compiler": "^8.2.0",
+        "@angular/compiler-cli": "^8.2.0",
+        "@angular/core": "^8.2.0",
+        "@angular/platform-browser": "^8.2.0",
+        "@angular/platform-browser-dynamic": "^8.2.0",
+        "@angular/router": "^8.2.0",
+        "@angular/upgrade": "^8.2.0",
         "@nrwl/workspace": "^8.6.0",
-    "@stryker-mutator/api": "^2.1.0",
-    "@stryker-mutator/core": "^2.1.0",
-    "@stryker-mutator/html-reporter": "^2.1.0",
-    "@stryker-mutator/jest-runner": "^2.1.0",
-    "@stryker-mutator/karma-runner": "^2.1.0",
-    "@stryker-mutator/typescript": "^2.1.0"
+        "@stryker-mutator/api": "^2.1.0",
+        "@stryker-mutator/core": "^2.1.0",
+        "@stryker-mutator/html-reporter": "^2.1.0",
+        "@stryker-mutator/jest-runner": "^2.1.0",
+        "@stryker-mutator/karma-runner": "^2.1.0",
+        "@stryker-mutator/typescript": "^2.1.0",
+        "@types/node": "^12.7.3",
+        "typescript": "^3.6.2"
+    },
+    "dependencies": {
+        "@nrwl/tao": "^8.6.0",
+        "@types/jest": "^24.0.19",
+        "jest": "^24.9.0"
     }
 }

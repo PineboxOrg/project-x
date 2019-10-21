@@ -20,7 +20,7 @@ import {
     {
       const packageJson = readJsonInTree(host, 'package.json');
       const dependencyList: { name: string; version: string }[] = [];
-      if (!packageJson.devDependencies['@nrwl/stryker']) {
+      if (!packageJson.devDependencies['@angular-plugins/stryker']) {
         context.addTask(new NodePackageInstallTask());
         dependencyList.push(
           { name: '@stryker-mutator/api', version: strykerMutatorApi },

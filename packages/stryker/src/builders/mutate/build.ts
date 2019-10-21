@@ -1,7 +1,7 @@
 import { Config } from '@stryker-mutator/api/config';
 import { LoggerApi } from "@angular-devkit/core/src/logger";
 import { LogLevel } from '@stryker-mutator/api/core';
-import { Schema as StrykerBuilderSchema } from './schema';
+import { SchemaObject as StrykerBuilderSchema } from './schema';
 
 export class StrykerConfiguration{
   private readonly _config = new Config();
@@ -9,6 +9,10 @@ export class StrykerConfiguration{
     constructor(private _logger: LoggerApi, private _workspaceRoot: string){}
 
     validateConfig(options:StrykerBuilderSchema){
+      if(options.length === 0){
+        this._logger.error('Invalid configuration: Make sure you are passing the right arguments - empty options');
+    }
+    
       if(options.configFile){
         return this.getConfigurationByFile(options.configFile);
       }

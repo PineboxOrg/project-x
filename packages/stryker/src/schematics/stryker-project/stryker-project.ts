@@ -9,7 +9,7 @@ import {
   Tree,
   TypedSchematicContext
 } from '@angular-devkit/schematics';
-import { getProjectConfig, getWorkspace, readJsonInTree, updateWorkspaceInTree } from '@nrwl/workspace';
+import { getProjectConfig, getWorkspace, readJsonInTree, updateWorkspaceInTree, readWorkspace } from '@nrwl/workspace';
 import { mergeWith } from '@angular-devkit/schematics';
 import { Schema } from './schema';
 import { join, normalize } from '@angular-devkit/core';
@@ -27,7 +27,7 @@ function concatPath(value: string, path: string, startPath: string = './') {
 
 function generateFile(options: Schema): Rule {
   return (host, context) => {
-    const workspaceJson = readJsonInTree(host, 'angular.json');
+    const workspaceJson = readWorkspace(host);
     const projectConfig = getProjectConfig(host, options.project);
     const root = projectConfig.root.length === 0 ? '' : `${projectConfig.root}/`;
     let libsFolder = (workspaceJson.newProjectRoot && workspaceJson.newProjectRoot.length) ? workspaceJson.newProjectRoot:'libs';
@@ -37,6 +37,14 @@ function generateFile(options: Schema): Rule {
         template({
           tmpl: '',
           ...options,
+          testRunner:'command',
+          commandRunner: {
+              command: `yarn test ${options.project}` 
+          },
+          plugins: [
+            "@stryker-mutator/typescript",
+            "@stryker-mutator/html-reporter"
+          ],
           files: [
             concatPath(libsFolder, '/**/*.ts'),
             concatPath(libsFolder, '/**/*.html'),
@@ -54,7 +62,7 @@ function generateFile(options: Schema): Rule {
             concatPath(root, 'src/**/*.spec.ts', '!./'),
             concatPath(root, 'src/main.ts', '!./'),
             concatPath(root, 'src/**/*.module.ts', '!./'),
-          ]
+          ],
         }),
 
         move(projectConfig.root),

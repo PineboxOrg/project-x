@@ -1,4 +1,5 @@
 import { StrykerOptions } from "@stryker-mutator/api/core";
 
-export interface Schema extends StrykerOptions {
+export interface SchemaObject extends StrykerOptions {
+    configFile?: string;
 }

@@ -1,14 +1,18 @@
 module.exports = function(config) {
   config.set({
     mutator: '<%= mutator %>',
-    packageManager: '<%= packageManager %>',
     testRunner: '<%= testRunner %>',
+    commandRunner: {
+      command: '<%= commandRunner.command %>' 
+    },
+    plugins: [<% for(let plugin of plugins){%> '<%= plugin %>',<%}%>],
+    packageManager: '<%= packageManager %>',
     coverageAnalysis: '<%= coverageAnalysis %>',
-    tsconfigFile: 'tsconfig.json',
     files: [<% for(let file of files){%> '<%= file %>',
     <%}%>],
     mutate: [<% for(let file of mutate){ %> '<%= file %>',
     <% } %>],
+    timeoutMS: <%= timeoutMS %>,
     reporters: ['<%= reporters %>']
   });
 };

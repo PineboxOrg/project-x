@@ -1,4 +1,4 @@
-import { Schema } from './schema';
+import { SchemaObject as StrykerBuilderSchema } from './schema';
 import { StrykerConfiguration } from './build';
 import {
   BuilderContext,
@@ -11,9 +11,10 @@ import { map, tap, catchError } from 'rxjs/operators';
 import { json } from '@angular-devkit/core';
 
 export function createStrykerRunner(
-  options: Schema,
+  options: StrykerBuilderSchema,
   { logger, workspaceRoot }: BuilderContext
 ): Observable<BuilderOutput> {
+  logger.info('Start mutation stryker builder' + JSON.stringify(options));
   const config = new StrykerConfiguration(logger, workspaceRoot).validateConfig(
     options
   );
@@ -28,4 +29,4 @@ export function createStrykerRunner(
   );
 }
 
-export default createBuilder<json.JsonObject & Schema>(createStrykerRunner);
+export default createBuilder<json.JsonObject & StrykerBuilderSchema>(createStrykerRunner);

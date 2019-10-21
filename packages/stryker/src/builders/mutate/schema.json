@@ -1,7 +1,7 @@
 {
-    "id": "NgStrykerBuilder",
     "title": "Mutation builder",
     "description": "Mutation builder options",
+    "type": "object",
     "properties": {
       "configFile": {
         "type": "string",
