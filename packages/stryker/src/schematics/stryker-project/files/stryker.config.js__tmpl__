@@ -3,13 +3,14 @@ module.exports = function(config) {
     mutator: '<%= mutator %>',
     testRunner: '<%= testRunner %>',
     commandRunner: {
-      command: '<%= commandRunner.command %>' 
+      command: '<%= commandRunner.command %>'
     },
-    plugins: [<% for(let plugin of plugins){%> '<%= plugin %>',<%}%>],
+    plugins: [<% for(let plugin of plugins){%> '<%= plugin %>',
+    <%}%>],
     packageManager: '<%= packageManager %>',
     coverageAnalysis: '<%= coverageAnalysis %>',
     files: [<% for(let file of files){%> '<%= file %>',
-    <%}%>],
+    <% } %>],
     mutate: [<% for(let file of mutate){ %> '<%= file %>',
     <% } %>],
     timeoutMS: <%= timeoutMS %>,
