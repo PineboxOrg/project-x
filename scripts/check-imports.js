@@ -25,8 +25,7 @@ function allFilesInDir(dirName) {
 }
 
 function check() {
-  const exceptions = [
-  ];
+  const exceptions = [];
 
   const files = [
     ...allFilesInDir('packages/stryker'),

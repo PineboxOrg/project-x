@@ -18,7 +18,6 @@ What is Angular Plugins?
 
 **Angular Plugins** is an added value pack for angular apps and nx repositories that make ...
 
-
 ## Plugins
 
 - [Stryker](https://electronjs.org/)
@@ -27,16 +26,14 @@ What is Angular Plugins?
   > Build amazing apps in one codebase, for any platform, with the web.
 
 ## Want to help?
-If you want to file a bug or submit a PR, read up on our guidelines for contributing.
 
+If you want to file a bug or submit a PR, read up on our guidelines for contributing.
 
 Please see our [guidelines for contributing](https://github.com/nstudio/xplat/blob/master/CONTRIBUTING.md).
 
 ## Core Team
 
-| Sebastian Guevara                                                          
+| Sebastian Guevara  
 | ---------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------------- | ------------------------------------------------------------------------ | -------------------------------------------------------------------- |
-| ![Sebastian Guevara](https://avatars3.githubusercontent.com/u/17608169?s=150) 
-| [SebasG22](https://github.com/vsavkin)                                  
-
-
+| ![Sebastian Guevara](https://avatars3.githubusercontent.com/u/17608169?s=150)
+| [SebasG22](https://github.com/vsavkin)

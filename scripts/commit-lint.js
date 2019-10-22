@@ -24,12 +24,7 @@ if (exitCode === 0) {
   console.log('\ntype(scope): subject \n BLANK LINE \n body');
   console.log('\n');
   console.log('possible types: chore|build|feat|fix|refactor|style|docs');
-  console.log(
-    'possible scopes: stryker|workbox|repo (if unsure use "repo")'
-  );
-  console.log(
-    '\nEXAMPLE: \n' +
-      'feat(stryker): add a new package\n'
-  );
+  console.log('possible scopes: stryker|workbox|repo (if unsure use "repo")');
+  console.log('\nEXAMPLE: \n' + 'feat(stryker): add a new package\n');
 }
 process.exit(exitCode);

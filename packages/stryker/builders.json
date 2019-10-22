@@ -1,10 +1,10 @@
 {
-    "$schema": "@angular-devkit/architect/src/builders-schema.json",
-    "builders": {
-      "mutate": {
-        "implementation": "./src/builders/mutate/stryker.impl",
-        "schema": "./src/builders/mutate/schema.json",
-        "description": "Run stryker mutation tests"
-      }
+  "$schema": "@angular-devkit/architect/src/builders-schema.json",
+  "builders": {
+    "mutate": {
+      "implementation": "./src/builders/mutate/stryker.impl",
+      "schema": "./src/builders/mutate/schema.json",
+      "description": "Run stryker mutation tests"
     }
   }
+}

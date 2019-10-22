@@ -29,4 +29,6 @@ export function createStrykerRunner(
   );
 }
 
-export default createBuilder<json.JsonObject & StrykerBuilderSchema>(createStrykerRunner);
+export default createBuilder<json.JsonObject & StrykerBuilderSchema>(
+  createStrykerRunner
+);

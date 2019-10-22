@@ -19,28 +19,35 @@ function patchPackageJsonDeps(projPath) {
 
 export function createAngularProject(project: string = 'proj') {
   const projPath = `./tmp/angular/${project}`;
-  execSync(`./node_modules/.bin/ng new ${project} --directory=${projPath} --no-interactive --skip-install`).toString();
+  execSync(
+    `./node_modules/.bin/ng new ${project} --directory=${projPath} --no-interactive --skip-install`
+  ).toString();
   patchPackageJsonDeps(projPath);
   runYarnInstallDefault(projPath);
 }
 
 export function createAngularNRWLProject(project: string = 'proj') {
   const projPath = `tmp/nrwl/${project}`;
-  console.log(execSync(`./node_modules/.bin/ng new ${project} --directory=${projPath} --no-interactive --skip-install --collection=@nrwl/workspace --npmScope=${project}`).toString());
+  console.log(
+    execSync(
+      `./node_modules/.bin/ng new ${project} --directory=${projPath} --no-interactive --skip-install --collection=@nrwl/workspace --npmScope=${project}`
+    ).toString()
+  );
   patchPackageJsonDeps(projPath);
   runYarnInstallDefault(projPath);
 }
 
 function runYarnInstallDefault(projPath: string, silent: boolean = true) {
   try {
-    console.log(execSync('yarn install', {
-      cwd: projPath
-    }).toString());
+    console.log(
+      execSync('yarn install', {
+        cwd: projPath
+      }).toString()
+    );
     const install = execSync('ls -la', {
       cwd: projPath,
       ...(silent ? { stdio: ['ignore', 'ignore', 'ignore'] } : {})
     });
-
   } catch (error) {
     console.error(error);
   }
@@ -55,11 +62,9 @@ export function runAngularCLICommand(
   }
 ): string {
   try {
-
     return execSync(`./node_modules/.bin/ng ${command}`, {
       cwd: `./tmp/angular/${projPath}`
-    })
-      .toString()
+    }).toString();
   } catch (e) {
     if (opts.silenceError) {
       return e.stdout.toString();
@@ -78,11 +83,9 @@ export function runNRWLCLICommand(
   }
 ): string {
   try {
-
     return execSync(`./node_modules/.bin/ng ${command}`, {
       cwd: `./tmp/nrwl/${projPath}`
-    })
-      .toString()
+    }).toString();
   } catch (e) {
     if (opts.silenceError) {
       return e.stdout.toString();
@@ -93,7 +96,7 @@ export function runNRWLCLICommand(
   }
 }
 
-export function runAngularCommand(projPath:string,command: string): string {
+export function runAngularCommand(projPath: string, command: string): string {
   try {
     return execSync(command, {
       cwd: `./tmp/angular/${projPath}`,
@@ -129,5 +132,7 @@ export function runCommandAsync(
 }
 export function expectMutationFail(v: { stdout: string; stderr: string }) {
   // console.warn('The command fail for ' + v.stderr);
-  expect(v.stderr).toContain('Failed to ran mutation tests\nerror Command failed with exit code 1.\n');
+  expect(v.stderr).toContain(
+    'Failed to ran mutation tests\nerror Command failed with exit code 1.\n'
+  );
 }
