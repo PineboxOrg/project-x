@@ -5,7 +5,7 @@ const gitMessage = require('child_process')
   .execSync('git log -1 --no-merges')
   .toString()
   .trim();
-const matchCommit = /(chore|build|feat|fix|refactor|style|docs)\((backend|testing|web|react|angular|nx)\):\s(([a-z0-9:\-\s])+)/g.test(
+const matchCommit = /(chore|build|feat|fix|refactor|style|docs|test)\((backend|testing|web|stryker|repo)\):\s(([a-z0-9:\-\s])+)/g.test(
   gitMessage
 );
 const matchRelease = /release/gi.test(gitMessage);
@@ -29,7 +29,7 @@ if (exitCode === 0) {
   );
   console.log(
     '\nEXAMPLE: \n' +
-      'feat(nx): add an option to generate lazy-loadable modules\n'
+      'feat(stryker): add a new package\n'
   );
 }
 process.exit(exitCode);

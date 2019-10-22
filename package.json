@@ -9,6 +9,8 @@
         "build": "./scripts/build.sh",
         "linknpm": "./scripts/link.sh",
         "e2e": "./scripts/e2e.sh",
+        "checkcommit": "node ./scripts/commit-lint.js",
+        "checkimports": "node ./scripts/check-imports.js",
         "test": "yarn linknpm fast && ./scripts/test.sh",
         "release": "./scripts/publish.sh"
     },

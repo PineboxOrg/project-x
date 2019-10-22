@@ -26,7 +26,6 @@ export function createAngularProject(project: string = 'proj') {
 
 export function createAngularNRWLProject(project: string = 'proj') {
   const projPath = `tmp/nrwl/${project}`;
-  console.log();
   console.log(execSync(`./node_modules/.bin/ng new ${project} --directory=${projPath} --no-interactive --skip-install --collection=@nrwl/workspace --npmScope=${project}`).toString());
   patchPackageJsonDeps(projPath);
   runYarnInstallDefault(projPath);
