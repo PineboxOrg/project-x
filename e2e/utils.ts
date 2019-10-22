@@ -13,13 +13,13 @@ function patchPackageJsonDeps(projPath) {
   p.devDependencies['@nrwl/workspace'] = `8.4.12`;
   p.devDependencies['@nrwl/angular'] = `8.4.12`;
 
-  p.devDependencies['@angular-builders/stryker'] = `file:${strykerPath}`;
+  p.devDependencies['@angular-plugins/stryker'] = `file:${strykerPath}`;
   writeFileSync(`${projPath}/package.json`, JSON.stringify(p, null, 2));
 }
 
 export function createAngularProject(project: string = 'proj') {
   const projPath = `./tmp/angular/${project}`;
-  console.log(execSync(`./node_modules/.bin/ng new ${project} --directory=${projPath} --no-interactive --skip-install`).toString());
+  execSync(`./node_modules/.bin/ng new ${project} --directory=${projPath} --no-interactive --skip-install`).toString();
   patchPackageJsonDeps(projPath);
   runYarnInstallDefault(projPath);
 }
